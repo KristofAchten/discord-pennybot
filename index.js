@@ -39,6 +39,5 @@ function handleCommand(message, command, args) {
 }
 
 // Login after initialization
-console.log(require("./private.js"))
 client.login(require("./private.js").login)
 
