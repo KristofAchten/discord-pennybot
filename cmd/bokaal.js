@@ -11,19 +11,25 @@ module.exports = {
             let username = message.member.user.username
             let name = nickname === null ? username : nickname
 
-            message.channel.send(`Thanks ${name}, transferring your message to de bokaal!`)
-            postToSlack(args.join(' '), name)
+            postToSlack(message, args.join(' '), name)
         }
     }
 }
 
 const hook = require("../private.js").slack_hook
 
-function postToSlack(message, user) {
-    const axios = require('axios')
+function postToSlack(origMsg, message, user) {
 
-    msg = `${user} verzond volgend bericht vanaf Discord: ${message}`
-    axios.post(hook, {
-        text: msg
-    })
+    if (message && !message.trim()) {
+        origMsg.channel.send(`Thanks ${user}, transferring your message to de bokaal!`)
+        const axios = require('axios')
+
+        msg = `${user} verzond volgend bericht vanaf Discord: ${message}`
+        axios.post(hook, {
+            text: msg
+        })
+    } else {
+        origMsg.channel.send(`You seem to be sending... nothing, ${user}? Not transferring your message.`)
+    }
+
 }
