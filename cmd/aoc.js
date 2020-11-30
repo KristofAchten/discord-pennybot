@@ -73,7 +73,7 @@ function postMessage(message, url, text, day, year) {
     .setColor('#f54b42')
     .setTitle(`AoC day ${day} of ${year}: ${title}`)
     .setURL(url)
-    .setDescription(truncate(desc, 2048))
+    .setDescription('```' + truncate(desc, 2040) + '```')
     .setImage('https://minapecheux.com/wp/wp-content/uploads/2019/12/advent_of_code_trees.png')
     .setTimestamp()
     .setFooter('Generated through ~aoc <day> (<year>)')
