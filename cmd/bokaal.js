@@ -20,7 +20,7 @@ const hook = require("../private.js").slack_hook
 
 function postToSlack(origMsg, message, user) {
 
-    if (message && !message.trim()) {
+    if (message && message.trim() !== "") {
         origMsg.channel.send(`Thanks ${user}, transferring your message to de bokaal!`)
         const axios = require('axios')
 
